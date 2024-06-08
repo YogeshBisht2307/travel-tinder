@@ -15,7 +15,7 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
 
   const { access_token, refresh_token, user } = data.session;
   const userEntity = await getUserProfileById(user.id)
-  if (userEntity === null){
+  if (userEntity === null) {
     createUserProfile(user.id, user.user_metadata.name, user.user_metadata.picture)
   }
 

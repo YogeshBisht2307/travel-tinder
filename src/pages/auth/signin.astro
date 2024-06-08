@@ -8,12 +8,13 @@ const refreshToken = cookies.get("tt-refresh-token");
 if (accessToken && refreshToken) {
   return redirect("/home");
 }
-
 ---
 
 <BaseLayout title="Travel Tinder: Sign in">
   <h1>Sign in</h1>
   <form action="/api/auth/signin" method="post">
-    <button value="google" name="provider" type="submit">Sign in with google</button>
+    <button value="google" name="provider" type="submit"
+      >Sign in with google</button
+    >
   </form>
 </BaseLayout>

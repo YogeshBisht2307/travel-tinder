@@ -4,7 +4,7 @@ import type { UserProfileEntity } from "./entity";
 export const createUserProfile = async (userId: String, name: String, profilePicture: String): Promise<UserProfileEntity | null> => {
     const { data, error } = await supabase
         .from("tt_user_profile")
-        .insert({user_id: userId, name: name, profile_picture: profilePicture})
+        .insert({ user_id: userId, name: name, profile_picture: profilePicture })
         .select("*")
         .single()
 
@@ -16,7 +16,7 @@ export const createUserProfile = async (userId: String, name: String, profilePic
     return data as UserProfileEntity
 }
 
-export const getUserProfileById = async(userId: String): Promise<UserProfileEntity | null> => {
+export const getUserProfileById = async (userId: String): Promise<UserProfileEntity | null> => {
     const { data, error } = await supabase
         .from("tt_user_profile")
         .select("*")
