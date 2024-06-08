@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { supabase } from "../lib/supbase/config";
+
+const { cookies, redirect } = Astro;
+const accessToken = cookies.get("tt-access-token");
+const refreshToken = cookies.get("tt-refresh-token");
+
+if (!accessToken || !refreshToken) {
+  return redirect("/auth/signin");
+}
+
+const { data, error } = await supabase.auth.setSession({
+  refresh_token: refreshToken.value,
+  access_token: accessToken.value,
+});
+
+if (error) {
+  cookies.delete("tt-access-token", {
+    sameSite: "strict",
+    path: "/",
+    secure: true
+  });
+
+  cookies.delete("tt-refresh-token", {
+    sameSite: "strict",
+    path: "/",
+    secure: true
+  });
+
+  console.log(data)
+  return redirect("/auth/signin");
+}
+
+
+---
+
+<BaseLayout title="Travel Tinder: Home">
+    <form action="/api/auth/signout">
+        <button type="submit">Sign out</button>
+    </form>
+</BaseLayout>
