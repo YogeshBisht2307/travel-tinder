@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { faGoogleIcon } from "../../lib/fontawesome/icons";
 
 const { cookies, redirect } = Astro;
 const accessToken = cookies.get("tt-access-token");
@@ -11,10 +12,115 @@ if (accessToken && refreshToken) {
 ---
 
 <BaseLayout title="Travel Tinder: Sign in">
-  <h1>Sign in</h1>
-  <form action="/api/auth/signin" method="post">
-    <button value="google" name="provider" type="submit"
-      >Sign in with google</button
-    >
-  </form>
+  <main>
+    <div class="login-container">
+      <div class="login-images friends">
+        <img src="/travel-tinder-friends.jpg"/>
+      </div>
+      <div class="login-images couple">
+        <img src="/travel-tinder-couple.jpg"/>
+      </div>
+      <div class="container-top">
+        <h1>Find Your Travel Mate</h1>
+      </div>
+      <div class="container-bottom">
+        <form action="/api/auth/signin" method="post">
+          <button value="google" name="provider" type="submit" class="google-signin">
+            <Fragment set:html={faGoogleIcon.html}/>
+            <span>Sign in with google</span>
+          </button>
+        </form>
+        <p>By signin up, you agree to our Terms. See how we use your data in our Privacy Policy. We never post your data to Facebook.</p>
+      </div>
+    </div>
+  </main>
 </BaseLayout>
+
+<style>
+  main {
+    height: 100vh;
+    width: auto;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-gradient-darker);
+    background: -moz-linear-gradient(50deg, var(--bg-gradient-darker) 0%, var(--bg-gradient-dark) 56%, var(--bg-gradient-light) 100%);
+    background: -webkit-linear-gradient(50deg, var(--bg-gradient-darker) 0%, var(--bg-gradient-dark) 56%, var(--bg-gradient-light) 100%);
+    background: linear-gradient(50deg, var(--bg-gradient-darker) 0%, var(--bg-gradient-dark) 56%, var(--bg-gradient-light) 100%);
+  }
+
+  h1 {
+    color: var(--white-light);
+    font-size: 3.5rem;
+  }
+
+  p {
+    color: var(--white-light)
+  }
+
+  .login-container {
+    width: 100%;
+    padding: 5rem 2rem;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  .login-images{
+    position: absolute;
+    width: 160px;
+    height: 230px;
+  }
+
+  .login-images img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    border: 2px solid var(--white-light);
+  }
+
+  .login-images.friends{
+    right: 15%;
+    top: 30%;
+    transform: rotate(-5deg);
+  }
+
+  .login-images.couple {
+    left: 15%;
+    top: 40%;
+    transform: rotate(5deg);
+  }
+
+  button.google-signin{
+    padding: 1rem 0rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 1.25rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  div.container-bottom p {
+    padding-top: 2rem;
+    font-size: 1rem;
+  }
+
+  button.google-signin :global(svg) {
+    height: 1.5rem !important;
+    color: orangered;
+  }
+
+  @media(max-height: 668px){
+    .login-images {
+      display: none;
+    }
+  }
+</style>
