@@ -1,19 +1,114 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { faCircleRightIcon } from "../lib/fontawesome/icons";
 ---
 
 <BaseLayout title="Travel Tinder">
-	<main></main>
+	<main>
+		<div class="login-container">
+			<div class="login-images friends">
+				<img src="/travel-tinder-share-friends.jpg" />
+			</div>
+			<div class="login-images couple">
+				<img src="/travel-tinder-share-intrests.jpg" />
+			</div>
+			<div class="container-top">
+				<h1>Connect with people who share your destination.</h1>
+			</div>
+			<div class="container-bottom">
+				<h2>Find Your Mate Now!</h2>
+				<a href="/auth/signin"><Fragment set:html={faCircleRightIcon.html} /></a>
+			</div>
+		</div>
+	</main>
 </BaseLayout>
 
 <style>
 	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
+		height: 100vh;
+		width: auto;
+		max-width: 500px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: var(--bg-gradient-darker);
+		background: -moz-linear-gradient(
+			50deg,
+			var(--bg-gradient-darker) 0%,
+			var(--bg-gradient-dark) 56%,
+			var(--bg-gradient-light) 100%
+		);
+		background: -webkit-linear-gradient(
+			50deg,
+			var(--bg-gradient-darker) 0%,
+			var(--bg-gradient-dark) 56%,
+			var(--bg-gradient-light) 100%
+		);
+		background: linear-gradient(
+			50deg,
+			var(--bg-gradient-darker) 0%,
+			var(--bg-gradient-dark) 56%,
+			var(--bg-gradient-light) 100%
+		);
+	}
+
+	h1 {
+		color: var(--text-white);
+		font-size: 2.5rem;
+	}
+
+	.login-container {
+		width: 100%;
+		padding: 5rem 2rem;
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+	}
+
+	.login-images {
+		position: absolute;
+		width: 200px;
+		height: 200px;
+	}
+
+	.login-images img {
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+		border-radius: calc(7 * var(--radius-default));
+		border: 2px solid var(--text-white);
+	}
+
+	.login-images.friends {
+		right: 10%;
+		top: 35%;
+	}
+
+	.login-images.couple {
+		left: 10%;
+		top: 45%;
+	}
+
+	.container-bottom {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.container-bottom h2 {
+		color: var(--text-white);
+		font-size: 1.75rem;
+	}
+
+	.container-bottom :global(svg) {
+		height: 2.5rem !important;
+		color: var(--text-white);
+	}
+
+	@media (max-height: 668px) {
+		.login-images {
+			display: none;
+		}
 	}
 </style>

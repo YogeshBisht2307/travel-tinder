@@ -51,12 +51,12 @@ if (accessToken && refreshToken) {
   }
 
   h1 {
-    color: var(--white-light);
+    color: var(--text-white);
     font-size: 3.5rem;
   }
 
   p {
-    color: var(--white-light)
+    color: var(--text-white)
   }
 
   .login-container {
@@ -78,8 +78,8 @@ if (accessToken && refreshToken) {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-radius: 1rem;
-    border: 2px solid var(--white-light);
+    border-radius: var(--radius-default);
+    border: 2px solid var(--text-white);
   }
 
   .login-images.friends{
@@ -99,13 +99,13 @@ if (accessToken && refreshToken) {
     width: 100%;
     border: none;
     outline: none;
-    border-radius: 1.25rem;
     font-size: 1.5rem;
     font-weight: 600;
     display: flex;
     justify-content: space-around;
     align-items: center;
     cursor: pointer;
+    border-radius: var(--radius-default);
   }
 
   div.container-bottom p {

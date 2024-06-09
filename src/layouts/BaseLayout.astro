@@ -24,20 +24,12 @@ const { title } = Astro.props;
 	@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--white-light: #f1f1f1;
-		--accent-dark: 49, 10, 101;
+		--text-white: #f1f1f1;
 		--bg-gradient-darker: rgb(2, 0, 36, 1);
 		--bg-gradient-dark: rgb(9, 9, 121, 1);
 		--bg-gradient-light: rgb(0, 212, 255, 1);
-
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+		--bg-default: #13151a;
+		--radius-default: 1.25rem;
 	}
 	* {
 		padding: 0;
@@ -48,7 +40,7 @@ const { title } = Astro.props;
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background: #13151a;
+		background: var(--bg-default);
 		background-size: 224px;
 	}
 	body {
