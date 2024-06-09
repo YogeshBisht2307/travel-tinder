@@ -2,6 +2,8 @@ import type { APIRoute } from "astro";
 import { supabase } from "../../../lib/supbase/config";
 import type { Provider } from "@supabase/supabase-js";
 
+const redirectUrl = import.meta.env.GOOGLE_OAUTH_REDIRECT_URL
+
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     const formData = await request.formData();
     const provider = formData.get("provider")?.toString();
@@ -11,7 +13,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: provider as Provider,
             options: {
-                redirectTo: "http://localhost:4321/api/auth/callback"
+                redirectTo: redirectUrl
             },
         });
 
