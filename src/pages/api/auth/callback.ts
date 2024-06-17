@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { supabase } from "../../../lib/supbase/config";
+import { supabaseServer } from "../../../lib/supbase/config";
 import { createUserProfile, getUserProfileById } from "../../../lib/supbase/queries";
 
 export const GET: APIRoute = async ({ url, cookies, redirect }) => {
@@ -8,7 +8,7 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
     return new Response("No code provided", { status: 400 });
   }
 
-  const { data, error } = await supabase.auth.exchangeCodeForSession(authCode);
+  const { data, error } = await supabaseServer.auth.exchangeCodeForSession(authCode);
   if (error) {
     return new Response(error.message, { status: 500 });
   }
